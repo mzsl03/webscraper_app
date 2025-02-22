@@ -85,9 +85,11 @@ def main():
                 print(result[i])
 
 
-
+#Menu that gives user information about options
+#returs: tuple
+#[1] : main options (what the user wants to do (only s implemented))
+#[2] : stock options (if the user wants to see books that are not available)
 def menu()->(str, str):
-
     main_options = ["s","r","p"]
     stock_options = ["y","n"]
     option = input(TEXT_MAIN)
@@ -99,7 +101,8 @@ def menu()->(str, str):
 
     return option, s_option
 
-
+#In the case of the user not providing a useful option this function is called.
+#returns: string for the recheck
 def retry_text(question:int)->str:
     match question:
         case 1:
@@ -129,7 +132,9 @@ def printer(books_printer:list):
     for book in books_printer:
         print(book)
 
-
+#Searches for the book that the user inputs, not finished
+#returns: list of results
+#TODO
 def search_for_book(title: str, stock: str) -> list:
     search_list = []
     for book in books:
