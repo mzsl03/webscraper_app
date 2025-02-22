@@ -75,9 +75,13 @@ def main():
     selection = menu()
     if selection[0] == "s":
         if selection[1] == "y":
-            print(search_for_book(input(TEXT_NAME_SEARCH_INPUT),"y").__str__())
+            result = search_for_book(input(TEXT_NAME_SEARCH_INPUT),"y")
+            for i in range(0, len(result)):
+                print(result[i])
         if selection[1] == "n":
-            print(search_for_book(input(TEXT_NAME_SEARCH_INPUT),"n").__str__())
+            result = search_for_book(input(TEXT_NAME_SEARCH_INPUT), "n")
+            for i in range(0, len(result)):
+                print(result[i])
 
 
 
@@ -130,7 +134,7 @@ def search_for_book(title: str, stock: str) -> list:
     for book in books:
         book_title = book.get_name_of_book()
         similarity = SequenceMatcher(None, title.lower(), book_title.lower()).ratio()
-        if similarity > 0.5:
+        if similarity > 0.5555:
             if stock == "y" and book.is_available():
                 search_list.append(book)
             elif stock == "n":
