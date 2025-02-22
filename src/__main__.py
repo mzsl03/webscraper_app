@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 
 from bs4 import BeautifulSoup
 from book import Book
@@ -141,16 +142,6 @@ def search_for_book(title: str, stock: str) -> list:
                 search_list.append(book)
     return search_list
 
-"""def search_for_book(title: str, stock: str) -> list:
-    search_list = []
-    for book in books:
-        similarity = SequenceMatcher(None, title.lower(), book.get_name_of_book().lower()).ratio()
-        if similarity > 0.1:
-            if stock == "y" and book.is_available():
-                search_list.append(book)
-            elif stock == "n":
-                search_list.append(book)
-    return search_list"""
 
 if __name__ == "__main__":
     main()
