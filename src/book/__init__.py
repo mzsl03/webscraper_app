@@ -21,6 +21,9 @@ class Book:
     def is_available(self)->bool:
         return True
 
+    def get_rating(self)->int:
+        return int(self.star_rating)
+
     #Future project where the user can decide if they like a product or not
     #TODO
     def set_like_dislike(self, like_dislike):

@@ -20,8 +20,8 @@ ___       ___    _____   ______     _____     ____   ______       ____     _____
 ---------------------------------------------------------------------------------------
 Please select a function:
 [s] : search for books by title
-[r] : sort by rating
-[p] : sort by price
+[r] : get books by rating
+[p] : get books by price
 """
 
 TEXT_AVAILABILITY = """
@@ -35,6 +35,12 @@ Would you like to see books that are not in stock right now?
 TEXT_NAME_SEARCH_INPUT = """
 ---------------------------------------------------------------------------------------
 Enter the name of the book you'd like to see!
+---------------------------------------------------------------------------------------
+"""
+
+TEXT_RATING = """
+---------------------------------------------------------------------------------------
+What is the minimum rating of books that you would like to see?
 ---------------------------------------------------------------------------------------
 """
 
@@ -79,9 +85,18 @@ def main():
             result = search_for_book(input(TEXT_NAME_SEARCH_INPUT),"y")
             for i in range(0, len(result)):
                 print(result[i])
-        if selection[1] == "n":
+        elif selection[1] == "n":
             result = search_for_book(input(TEXT_NAME_SEARCH_INPUT), "n")
             for i in range(0, len(result)):
+                print(result[i])
+    elif selection[0] == "r":
+        if selection[1] == "y":
+            result = books_of_star_rating(int(input(TEXT_RATING)))
+            for i in range(0,len(result)):
+                print(result[i])
+        elif selection[1] == "n":
+            result = books_of_star_rating(int(input(TEXT_RATING)))
+            for i in range(0,len(result)):
                 print(result[i])
 
 
@@ -111,8 +126,8 @@ def retry_text(question:int)->str:
 Input for the main functionality question
 is not sufficient please try one of these:
 [s] : search for books by title
-[r] : sort by rating
-[p] : sort by price
+[r] : get books by rating
+[p] : get books by price
 ---------------------------------------------------------------------------------------
 """
         case 2:
@@ -146,6 +161,15 @@ def search_for_book(title: str, stock: str) -> list:
             elif stock == "n":
                 search_list.append(book)
     return search_list
+
+#Method that returns books based on an input of star rating
+#returns: list of books
+def books_of_star_rating(rating:int)->list:
+    list_of_books_with_star_rating = [book for book in books if book.get_rating() == rating]
+    return list_of_books_with_star_rating
+
+
+
 
 
 if __name__ == "__main__":
